@@ -6,4 +6,8 @@
     <RootNamespace>dotnet_project_helper</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CommandLineArgumentsParser" Version="3.0.20" />
+  </ItemGroup>
+
 </Project>

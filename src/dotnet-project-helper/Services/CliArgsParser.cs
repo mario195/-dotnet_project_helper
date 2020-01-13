@@ -16,8 +16,8 @@ namespace dotnet_project_helper.Services
                     new SwitchArgument('g', "gitinit", false),
                     new SwitchArgument('t', "test", false),
                     new ValueArgument<string>('p', "path","Fully qualified name of the project"),
-                    new EnumeratedValueArgument<string>('a', "apptype","Type of application (api, console, mvc)" ,new string[]{
-                    "console","api","mvc"
+                    new EnumeratedValueArgument<string>('a', "apptype","Type of application (webapi, console, mvc)" ,new string[]{
+                    "console","webapi","mvc"
                 })
             }
             };

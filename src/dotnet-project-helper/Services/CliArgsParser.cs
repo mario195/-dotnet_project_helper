@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CommandLineParser.Arguments;
 
 namespace dotnet_project_helper.Services
@@ -13,9 +14,9 @@ namespace dotnet_project_helper.Services
             {
                 Arguments = new List<Argument>(){
                     new SwitchArgument('g', "gitinit", false),
-                    new SwitchArgument('t', "--test", false),
-                    new ValueArgument<string>('p', "path", string.Empty),
-                    new EnumeratedValueArgument<string>('a', "apptype", new string[]{
+                    new SwitchArgument('t', "test", false),
+                    new ValueArgument<string>('p', "path","Fully qualified name of the project"),
+                    new EnumeratedValueArgument<string>('a', "apptype","Type of application (api, console, mvc)" ,new string[]{
                     "console","api","mvc"
                 })
             }
@@ -26,18 +27,43 @@ namespace dotnet_project_helper.Services
         {
             this.parser.ParseCommandLine(args);
 
-            parser.ShowParsedArguments();
+            var r = this.getAppType;
+        }
 
-            // if (parser.ParsingSucceeded)
-            // {
-            //     var parameter = new Parameter();
-            //     parser.
+        public string getAppType
+        {
+            get
+            {
+                return (parser.Arguments.SingleOrDefault(x => x.LongName == "apptype")
+                   as EnumeratedValueArgument<string>).Value;
+            }
+        }
 
-            // }
-            // else
-            // {
+        public bool createGitRepo
+        {
+            get
+            {
+                return (parser.Arguments.SingleOrDefault(x => x.LongName == "gitinit")
+                    as SwitchArgument).Value;
+            }
+        }
 
-            // }
+        public bool createTestProject
+        {
+            get
+            {
+                return (parser.Arguments.SingleOrDefault(x => x.LongName == "test")
+                    as SwitchArgument).Value;
+            }
+        }
+
+        public string getFullPath
+        {
+            get
+            {
+                return (parser.Arguments.SingleOrDefault(x => x.LongName == "path")
+                     as ValueArgument<string>).Value;
+            }
         }
     }
 }

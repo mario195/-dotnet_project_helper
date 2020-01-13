@@ -1,29 +1,29 @@
-﻿using System;
-using System.Diagnostics;
+﻿using dotnet_project_helper.Services;
 
 namespace dotnet_project_helper
 {
     class Program
     {
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task<int> Main(string[] args)
         {
-            ProcessStartInfo procStartInfo = new ProcessStartInfo("/bin/bash", "-c \"dotnet --info\"");
+            var parser = new CliArgsParser();
 
-            procStartInfo.RedirectStandardOutput = true;
+            if (args.Length == 0)
+            {
+                parser.ShowUsage();
+                
+                return 1;
+            }
+            else
+            {
+                parser.Parse(args);
 
-            procStartInfo.UseShellExecute = false;
+                var generator = new ProjectGenerator(parser, new CommandExecutor());
 
-            procStartInfo.CreateNoWindow = true;
+                await generator.Create();
+            }
 
-            System.Diagnostics.Process proc = new System.Diagnostics.Process();
-
-            proc.StartInfo = procStartInfo;
-
-            proc.Start();
-
-            String result = proc.StandardOutput.ReadToEnd();
-
-            System.Console.WriteLine(result);
+            return 0;
         }
     }
 }

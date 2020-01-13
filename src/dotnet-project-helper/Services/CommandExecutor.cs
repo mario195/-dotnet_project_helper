@@ -8,7 +8,7 @@ namespace dotnet_project_helper.Services
     {
         private ProcessStartInfo processstartInfo;
 
-        public string Command
+        private string Command
         {
             get
             {
@@ -23,7 +23,7 @@ namespace dotnet_project_helper.Services
             }
             set
             {
-                this.processstartInfo.Arguments = processstartInfo.Arguments += " " + value;
+                this.processstartInfo.Arguments = $"-c \"{value}\"";
             }
         }
 
@@ -33,7 +33,6 @@ namespace dotnet_project_helper.Services
             processstartInfo = new ProcessStartInfo()
             {
                 FileName = "/bin/bash",
-                Arguments = "-c ",
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
@@ -45,8 +44,10 @@ namespace dotnet_project_helper.Services
             this.Command = command;
         }
 
-        public async Task<CommandResult> Execute()
+        public async Task<CommandResult> Execute(Command command)
         {
+            this.Command=command.Value;
+
             var process = new Process()
             {
                 StartInfo = this.processstartInfo

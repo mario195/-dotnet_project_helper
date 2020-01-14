@@ -19,7 +19,7 @@ namespace dotnet_project_helper.lib.Services
                     new ValueArgument<string>('n',"name","Application name"){Optional=false},
                     new ValueArgument<string>('p', "path","Path to the project"){Optional=false},
                     new EnumeratedValueArgument<string>('a', "apptype","Type of application (webapi, console, mvc)" ,new string[]{
-                    "console","webapi","mvc"
+                    "console","webapi","mvc","classlib","blazorserver","web","webapp","angular","react","reactredux"
                 }){Optional=false}
             }
             };
@@ -28,11 +28,18 @@ namespace dotnet_project_helper.lib.Services
         public void ShowUsage() => parser.ShowUsage();
 
 
-        public void Parse(string[] args)
+        public Parameter Parse(string[] args)
         {
             this.parser.ParseCommandLine(args);
 
-            var r = this.getAppType;
+            return new Parameter()
+            {
+                ApplicationType = this.getAppType,
+                GitInit = this.shouldCreateGitRepo,
+                TestProject = this.shouldCreateTestProject,
+                Path = this.getFullPath,
+                Name = this.getAppName
+            };
         }
 
         public string getAppName

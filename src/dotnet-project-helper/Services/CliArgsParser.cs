@@ -57,7 +57,7 @@ namespace dotnet_project_helper.Services
         {
             get
             {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "gitinit")
+                return (parser.Arguments.SingleOrDefault(x => x.LongName == "git-init")
                     as SwitchArgument).Value;
             }
         }
@@ -66,7 +66,7 @@ namespace dotnet_project_helper.Services
         {
             get
             {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "test")
+                return (parser.Arguments.SingleOrDefault(x => x.LongName == "test-project")
                     as SwitchArgument).Value;
             }
         }

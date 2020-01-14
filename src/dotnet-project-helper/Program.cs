@@ -17,7 +17,9 @@ namespace dotnet_project_helper
             }
             else
             {
-                parser.Parse(args);
+                var parameter = parser.Parse(args);
+
+                parameter.DisplayParameter();
 
                 var generator = new ProjectGenerator(parser);
 

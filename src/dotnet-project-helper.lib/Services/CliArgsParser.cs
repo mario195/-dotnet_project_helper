@@ -15,6 +15,7 @@ namespace dotnet_project_helper.lib.Services
                 Arguments = new List<Argument>()
                 {
                     new SwitchArgument('g', "git-init", false){Optional=true,Description="Should the project be initialized with a git repo?"},
+                    new SwitchArgument('v',"verbose",false){Optional=true,Description="Shows verbose output during project generation"},
                     new SwitchArgument('t', "test-project", false){Optional=true,Description="Should the project be initialized with a test project?"},
                     new ValueArgument<string>('n',"name","Application name"){Optional=false},
                     new ValueArgument<string>('p', "path","Path to the project"){Optional=false},
@@ -38,7 +39,8 @@ namespace dotnet_project_helper.lib.Services
                 GitInit = this.shouldCreateGitRepo,
                 TestProject = this.shouldCreateTestProject,
                 Path = this.getFullPath,
-                Name = this.getAppName
+                Name = this.getAppName,
+                VerboseOutput=this.shouldBeVerbose
             };
         }
 
@@ -57,6 +59,15 @@ namespace dotnet_project_helper.lib.Services
             {
                 return (parser.Arguments.SingleOrDefault(x => x.LongName == "apptype")
                    as EnumeratedValueArgument<string>).Value;
+            }
+        }
+
+        public bool shouldBeVerbose
+        {
+            get
+            {
+                return (parser.Arguments.SingleOrDefault(x => x.LongName == "verbose")
+                    as SwitchArgument).Value;
             }
         }
 

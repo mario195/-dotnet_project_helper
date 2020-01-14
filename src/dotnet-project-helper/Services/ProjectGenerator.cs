@@ -11,9 +11,9 @@ namespace dotnet_project_helper.Services
 
         private List<Command> commands;
 
-        public ProjectGenerator(CliArgsParser parser, CommandExecutor executor)
+        public ProjectGenerator(CliArgsParser parser)
         {
-            this.executor = executor;
+            this.executor = new CommandExecutor();
 
             this.parser = parser;
 
@@ -24,7 +24,8 @@ namespace dotnet_project_helper.Services
             if (parser.shouldCreateTestProject)
                 AddTestProject(commands);
 
-            commands.Add(new Command { Value = $"dotnet sln {parser.getFullPath}/{parser.getAppName}.sln  add {parser.getFullPath}/src/{parser.getAppName}*" });
+            commands.Add(new Command { 
+                Value = $"dotnet sln {parser.getFullPath}/{parser.getAppName}.sln  add {parser.getFullPath}/src/{parser.getAppName}*" });
 
             if (parser.shouldCreateGitRepo)
                 AddGitRepo(commands);
@@ -36,9 +37,9 @@ namespace dotnet_project_helper.Services
 
             commands.Add(new Command { Value = $"git init {this.parser.getFullPath}" });
 
-            commands.Add(new Command { Value = $"git --git-dir={parser.getFullPath}/.git/  add . " });
+            commands.Add(new Command { Value = $"git -C {parser.getFullPath}/  add . " });
 
-            commands.Add(new Command { Value = $"git --git-dir={parser.getFullPath}/.git/ commit -m 'First commit'" });
+            commands.Add(new Command { Value = $"git -C {parser.getFullPath}/ commit -m 'First commit'" });
 
         }
 

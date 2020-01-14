@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotnet-project-helper\dotnet-project-helper.csproj" />
+    <ProjectReference Include="..\dotnet-project-helper.lib\dotnet-project-helper.lib.csproj" />
   </ItemGroup>
 
 </Project>

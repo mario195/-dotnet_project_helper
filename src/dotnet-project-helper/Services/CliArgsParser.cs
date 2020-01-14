@@ -14,8 +14,8 @@ namespace dotnet_project_helper.Services
             {
                 Arguments = new List<Argument>()
                 {
-                    new SwitchArgument('g', "gitinit", false){Optional=true,Description="Should the project be initialized with a git repo?"},
-                    new SwitchArgument('t', "test", false){Optional=true,Description="Should the project be initialized with a test project?"},
+                    new SwitchArgument('g', "git-init", false){Optional=true,Description="Should the project be initialized with a git repo?"},
+                    new SwitchArgument('t', "test-project", false){Optional=true,Description="Should the project be initialized with a test project?"},
                     new ValueArgument<string>('n',"name","Application name"){Optional=false},
                     new ValueArgument<string>('p', "path","Path to the project"){Optional=false},
                     new EnumeratedValueArgument<string>('a', "apptype","Type of application (webapi, console, mvc)" ,new string[]{
@@ -25,10 +25,8 @@ namespace dotnet_project_helper.Services
             };
         }
 
-        public void ShowUsage()
-        {
-            parser.ShowUsage();
-        }
+        public void ShowUsage() => parser.ShowUsage();
+
 
         public void Parse(string[] args)
         {
@@ -55,7 +53,7 @@ namespace dotnet_project_helper.Services
             }
         }
 
-        public bool createGitRepo
+        public bool shouldCreateGitRepo
         {
             get
             {
@@ -64,7 +62,7 @@ namespace dotnet_project_helper.Services
             }
         }
 
-        public bool createTestProject
+        public bool shouldCreateTestProject
         {
             get
             {

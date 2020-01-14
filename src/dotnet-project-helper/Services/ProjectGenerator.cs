@@ -21,12 +21,12 @@ namespace dotnet_project_helper.Services
 
             CreateRawProject(commands);
 
-            if (parser.createTestProject)
+            if (parser.shouldCreateTestProject)
                 AddTestProject(commands);
 
             commands.Add(new Command { Value = $"dotnet sln {parser.getFullPath}/{parser.getAppName}.sln  add {parser.getFullPath}/src/{parser.getAppName}*" });
 
-            if (parser.createGitRepo)
+            if (parser.shouldCreateGitRepo)
                 AddGitRepo(commands);
         }
 

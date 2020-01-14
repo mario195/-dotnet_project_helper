@@ -2,6 +2,16 @@ namespace dotnet_project_helper.lib.Services
 {
     public class Command
     {
-        public string  Value { get; set; }
+        public Command(string command)
+        {
+            Value = command;
+        }
+
+        public Command()
+        {
+
+        }
+
+        public string Value { get; set; }
     }
 }

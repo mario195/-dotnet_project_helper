@@ -64,9 +64,12 @@ namespace dotnet_project_helper.lib.Services
             foreach (Command command in commands)
             {
                 var result = await executor.Execute(command);
-
-                System.Console.WriteLine(result.Result);
+                
+                if (parser.shouldBeVerbose)
+                    System.Console.WriteLine(result.Result);
             }
+
+            System.Console.WriteLine("Done!");
         }
     }
 }

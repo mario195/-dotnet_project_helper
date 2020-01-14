@@ -1,4 +1,4 @@
-namespace dotnet_project_helper.Services
+namespace dotnet_project_helper.lib.Services
 {
     public class Parameter
     {

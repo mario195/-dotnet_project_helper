@@ -3,7 +3,7 @@ using Xunit;
 
 namespace dotnet_project_helper.test
 {
-    public class UnitTest1
+    public class CliArgsParser
     {
         [Fact]
         public void Test1()

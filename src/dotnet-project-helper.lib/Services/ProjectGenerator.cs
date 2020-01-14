@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace dotnet_project_helper.Services
+namespace dotnet_project_helper.lib.Services
 {
     public class ProjectGenerator
     {

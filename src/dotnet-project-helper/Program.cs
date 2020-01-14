@@ -1,4 +1,5 @@
-﻿using dotnet_project_helper.Services;
+﻿using dotnet_project_helper.lib.Services;
+
 
 namespace dotnet_project_helper
 {
@@ -11,14 +12,14 @@ namespace dotnet_project_helper
             if (args.Length == 0)
             {
                 parser.ShowUsage();
-                
+
                 return 1;
             }
             else
             {
                 parser.Parse(args);
 
-                var generator = new ProjectGenerator(parser, new CommandExecutor());
+                var generator = new ProjectGenerator(parser);
 
                 await generator.Create();
             }

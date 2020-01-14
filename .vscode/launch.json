@@ -16,7 +16,9 @@
                 "-p",
                 "~/test",
                 "-a",
-                "console"
+                "console",
+                "-n",
+                "new-app"
             ],
             "cwd": "${workspaceFolder}/src/dotnet-project-helper",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

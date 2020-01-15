@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using dotnet_project_helper.lib.Services;
 using System.Threading.Tasks;
+using dotnet_project_helper.lib.Models;
 
 namespace dotnet_project_helper.test
 {
@@ -31,7 +32,7 @@ namespace dotnet_project_helper.test
 
             var result = (await executor.Execute(command)).Result;
 
-            Assert.Equal(result, "Hello World\n");
+            Assert.Equal("Hello World\n", result);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommandLineParser.Arguments;
+using dotnet_project_helper.lib.Models;
 
 namespace dotnet_project_helper.lib.Services
 {

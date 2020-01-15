@@ -1,4 +1,4 @@
-namespace dotnet_project_helper.lib.Services
+namespace dotnet_project_helper.lib.Models
 {
     public class CommandResult
     {

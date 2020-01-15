@@ -1,6 +1,5 @@
 ﻿using dotnet_project_helper.lib.Services;
 
-
 namespace dotnet_project_helper
 {
     class Program

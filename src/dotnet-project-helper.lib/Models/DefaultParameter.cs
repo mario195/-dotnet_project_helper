@@ -1,6 +1,8 @@
+using dotnet_project_helper.lib.Interfaces;
+
 namespace dotnet_project_helper.lib.Models
 {
-    public class Parameter
+    public class DefaultParameter : IParameter
     {
         public string ApplicationType { get; set; }
 

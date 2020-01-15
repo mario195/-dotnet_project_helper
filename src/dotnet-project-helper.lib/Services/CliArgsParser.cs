@@ -30,11 +30,11 @@ namespace dotnet_project_helper.lib.Services
         public void ShowUsage() => parser.ShowUsage();
 
 
-        public Parameter Parse(string[] args)
+        public DefaultParameter Parse(string[] args)
         {
             this.parser.ParseCommandLine(args);
 
-            return new Parameter()
+            return new DefaultParameter()
             {
                 ApplicationType = this.getAppType,
                 GitInit = this.shouldCreateGitRepo,

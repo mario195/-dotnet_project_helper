@@ -21,7 +21,7 @@ namespace dotnet_project_helper
 
                 parameter.DisplayParameter();
 
-                var generator = new ProjectGenerator(parser);
+                var generator = new DefaultProjectGenerator(parser);
 
                 await generator.Create();
             }

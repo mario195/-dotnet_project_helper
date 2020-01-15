@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using dotnet_project_helper.lib.Interfaces;
 using dotnet_project_helper.lib.Models;
 
 namespace dotnet_project_helper.lib.Services
 {
-    public class ProjectGenerator
+    public class DefaultProjectGenerator : IProjectGenerator
     {
         private CliArgsParser parser;
 
@@ -12,7 +13,7 @@ namespace dotnet_project_helper.lib.Services
 
         private List<Command> commands;
 
-        public ProjectGenerator(CliArgsParser parser)
+        public DefaultProjectGenerator(CliArgsParser parser)
         {
             this.executor = new CommandExecutor();
 
@@ -25,8 +26,10 @@ namespace dotnet_project_helper.lib.Services
             if (parser.shouldCreateTestProject)
                 AddTestProject(commands);
 
-            commands.Add(new Command { 
-                Value = $"dotnet sln {parser.getFullPath}/{parser.getAppName}.sln  add {parser.getFullPath}/src/{parser.getAppName}*" });
+            commands.Add(new Command
+            {
+                Value = $"dotnet sln {parser.getFullPath}/{parser.getAppName}.sln  add {parser.getFullPath}/src/{parser.getAppName}*"
+            });
 
             if (parser.shouldCreateGitRepo)
                 AddGitRepo(commands);
@@ -65,7 +68,7 @@ namespace dotnet_project_helper.lib.Services
             foreach (Command command in commands)
             {
                 var result = await executor.Execute(command);
-                
+
                 if (parser.shouldBeVerbose)
                     System.Console.WriteLine(result.Result);
             }

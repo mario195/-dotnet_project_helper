@@ -8,11 +8,11 @@ namespace dotnet_project_helper.test
     {
         string[] args;
 
-        CliArgsParser parser;
+        DefaultCliArgsParser parser;
 
         public CliArgsParserTest()
         {
-            parser = new CliArgsParser();
+            parser = new DefaultCliArgsParser();
 
             args = new[]{
                 "-g",

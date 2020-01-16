@@ -7,13 +7,13 @@ namespace dotnet_project_helper.lib.Services
 {
     public class DefaultProjectGenerator : IProjectGenerator
     {
-        private CliArgsParser parser;
+        private DefaultCliArgsParser parser;
 
         private CommandExecutor executor;
 
         private List<Command> commands;
 
-        public DefaultProjectGenerator(CliArgsParser parser)
+        public DefaultProjectGenerator(DefaultCliArgsParser parser)
         {
             this.executor = new CommandExecutor();
 

@@ -6,7 +6,7 @@ namespace dotnet_project_helper
     {
         static async System.Threading.Tasks.Task<int> Main(string[] args)
         {
-            var parser = new CliArgsParser();
+            var parser = new DefaultCliArgsParser();
 
             if (args.Length == 0)
             {

@@ -9,19 +9,10 @@ namespace dotnet_project_helper.lib.Services
     {
         private ProcessStartInfo processstartInfo;
 
+        private Process process;
+
         private string Command
         {
-            get
-            {
-                if (this.processstartInfo.Arguments != null)
-                {
-                    return this.processstartInfo.Arguments;
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
             set
             {
                 this.processstartInfo.Arguments = $"-c \"{value}\"";
@@ -38,21 +29,16 @@ namespace dotnet_project_helper.lib.Services
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-        }
 
-        public CommandExecutor(string command) : this()
-        {
-            this.Command = command;
+            process = new Process()
+            {
+                StartInfo = this.processstartInfo
+            };
         }
 
         public async Task<CommandResult> Execute(Command command)
         {
-            this.Command=command.Value;
-
-            var process = new Process()
-            {
-                StartInfo = this.processstartInfo
-            };
+            this.Command = command.Value;
 
             try
             {

@@ -22,7 +22,8 @@ namespace dotnet_project_helper.test
                 "-a",
                 "console",
                 "-n",
-                "new-app"
+                "new-app",
+                "-v"
              };
 
             parser.Parse(args);
@@ -72,6 +73,14 @@ namespace dotnet_project_helper.test
             var parsed_createTestProject = parser.shouldCreateTestProject;
 
             Assert.True(parsed_createTestProject);
+        }
+
+        [Fact]
+        public void TrueIfVerboseModeActive()
+        {
+            var parsed_verbosemode = parser.shouldBeVerbose;
+
+            Assert.True(parsed_verbosemode);
         }
     }
 }

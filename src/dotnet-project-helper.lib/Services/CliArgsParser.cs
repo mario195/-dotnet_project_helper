@@ -22,8 +22,8 @@ namespace dotnet_project_helper.lib.Services
                     new ValueArgument<string>('p', "path","Path to the project"){Optional=false},
                     new EnumeratedValueArgument<string>('a', "apptype","Type of application (webapi, console, mvc)" ,new string[]{
                     "console","webapi","mvc","classlib","blazorserver","web","webapp","angular","react","reactredux"
-                }){Optional=false}
-            }
+                    }){Optional=false}
+                }
             };
         }
 
@@ -41,62 +41,38 @@ namespace dotnet_project_helper.lib.Services
                 TestProject = this.shouldCreateTestProject,
                 Path = this.getFullPath,
                 Name = this.getAppName,
-                VerboseOutput=this.shouldBeVerbose
+                VerboseOutput = this.shouldBeVerbose
             };
         }
 
         public string getAppName
         {
-            get
-            {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "name")
-                    as ValueArgument<string>).Value;
-            }
+            get => (parser.Arguments.SingleOrDefault(x => x.LongName == "name") as ValueArgument<string>).Value;
         }
 
         public string getAppType
         {
-            get
-            {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "apptype")
-                   as EnumeratedValueArgument<string>).Value;
-            }
+            get => (parser.Arguments.SingleOrDefault(x => x.LongName == "apptype") as EnumeratedValueArgument<string>).Value;
         }
 
         public bool shouldBeVerbose
         {
-            get
-            {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "verbose")
-                    as SwitchArgument).Value;
-            }
+            get => (parser.Arguments.SingleOrDefault(x => x.LongName == "verbose") as SwitchArgument).Value;
         }
 
         public bool shouldCreateGitRepo
         {
-            get
-            {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "git-init")
-                    as SwitchArgument).Value;
-            }
+            get => (parser.Arguments.SingleOrDefault(x => x.LongName == "git-init") as SwitchArgument).Value;
         }
 
         public bool shouldCreateTestProject
         {
-            get
-            {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "test-project")
-                    as SwitchArgument).Value;
-            }
+            get => (parser.Arguments.SingleOrDefault(x => x.LongName == "test-project") as SwitchArgument).Value;
         }
 
         public string getFullPath
         {
-            get
-            {
-                return (parser.Arguments.SingleOrDefault(x => x.LongName == "path")
-                     as ValueArgument<string>).Value;
-            }
+            get => (parser.Arguments.SingleOrDefault(x => x.LongName == "path") as ValueArgument<string>).Value;
         }
     }
 }

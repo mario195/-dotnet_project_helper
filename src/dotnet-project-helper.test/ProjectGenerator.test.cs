@@ -32,7 +32,7 @@ namespace dotnet_project_helper.test
 
         private async Task RemoveGeneratedProject()
         {
-            await new CommandExecutor().Execute(new Command { Value = "rm -rf ~/test" });
+            await new CommandExecutor().Execute(new Command { Value = $"rm -rf {parser.getFullPath}" });
         }
     }
 }

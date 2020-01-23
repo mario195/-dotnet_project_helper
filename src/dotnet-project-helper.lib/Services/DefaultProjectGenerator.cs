@@ -37,14 +37,15 @@ namespace dotnet_project_helper.lib.Services
 
         private void AddGitRepo(List<Command> commands)
         {
-            commands.Add(new Command { Value = $"dotnet new gitignore -o {parser.getFullPath}" });
+            var addGitRepoCommands=new List<Command>
+            {
+                new Command { Value = $"dotnet new gitignore -o {parser.getFullPath}" },
+                new Command { Value = $"git init {this.parser.getFullPath}" },
+                new Command { Value = $"git -C {parser.getFullPath}/  add . " },
+                new Command { Value = $"git -C {parser.getFullPath}/ commit -m 'First commit'" }
+            };
 
-            commands.Add(new Command { Value = $"git init {this.parser.getFullPath}" });
-
-            commands.Add(new Command { Value = $"git -C {parser.getFullPath}/  add . " });
-
-            commands.Add(new Command { Value = $"git -C {parser.getFullPath}/ commit -m 'First commit'" });
-
+            AddCommands(addGitRepoCommands);
         }
 
         private void AddTestProject(List<Command> commands)
@@ -54,13 +55,20 @@ namespace dotnet_project_helper.lib.Services
 
         private void CreateRawProject(List<Command> commands)
         {
-            commands.Add(new Command { Value = $"mkdir {this.parser.getFullPath}" });
+            var rawPorjectCommands = new List<Command>
+            {
+                new Command { Value = $"mkdir {this.parser.getFullPath}" },
+                new Command { Value = $"mkdir {this.parser.getFullPath}/src" },
+                new Command { Value = $"dotnet new {this.parser.getAppType}  -o {this.parser.getFullPath}/src/{parser.getAppName}" },
+                new Command { Value = $"dotnet new sln -n {parser.getAppName} -o {this.parser.getFullPath}" }
+            };
 
-            commands.Add(new Command { Value = $"mkdir {this.parser.getFullPath}/src" });
+            AddCommands(rawPorjectCommands);
+        }
 
-            commands.Add(new Command { Value = $"dotnet new {this.parser.getAppType}  -o {this.parser.getFullPath}/src/{parser.getAppName}" });
-
-            commands.Add(new Command { Value = $"dotnet new sln -n {parser.getAppName} -o {this.parser.getFullPath}" });
+        private void AddCommands(List<Command> commands)
+        {
+            this.commands.AddRange(commands);
         }
 
         public async Task Create()

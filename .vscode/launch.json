@@ -14,11 +14,11 @@
             "args": [
                 "-g",
                 "-p",
-                "~/test",
+                "~/IoT-Application",
                 "-a",
-                "console",
+                "react",
                 "-n",
-                "new-app"
+                "iot-app"
             ],
             "cwd": "${workspaceFolder}/src/dotnet-project-helper",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

@@ -10,13 +10,9 @@ namespace dotnet_project_helper.lib.Services
     {
         private CommandLineParser.CommandLineParser parser;
 
-        public DefaultCliArgsParser()
-        {
-           parser = new CommandLineParser.CommandLineParser();
-        }
+        public DefaultCliArgsParser() => parser = new CommandLineParser.CommandLineParser();
 
         public void ShowUsage() => parser.ShowUsage();
-
 
         public IParameter Parse(string[] args)
         {

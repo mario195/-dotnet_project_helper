@@ -42,7 +42,7 @@ namespace dotnet_project_helper.lib.Services
                 new Command { Value = $"dotnet new gitignore -o {parser.getFullPath}" },
                 new Command { Value = $"git init {this.parser.getFullPath}" },
                 new Command { Value = $"git -C {parser.getFullPath}/  add . " },
-                new Command { Value = $"git -C {parser.getFullPath}/ commit -m 'First commit'" }
+                new Command { Value = $"git -C {parser.getFullPath}/ commit -m 'First commit from dotnet-project-helper'" }
             };
 
             AddCommands(addGitRepoCommands);
